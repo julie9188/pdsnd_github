@@ -11,9 +11,9 @@ def get_filters():
     Asks user to specify a city, month, and day to analyze.
 
     Returns:
-        (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+        (str) city - name of the citys to analyze
+        (str) month - name of the months to filter by, or "all" to apply no month filter
+        (str) day - name of the day of weeks to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
@@ -24,7 +24,7 @@ def get_filters():
             break
         except Error:
             print('\n Please Select from Chicago, New York, Washington.')
-      
+
 
     # TO DO: get user input for month (all, january, february, ... , june)
     month_list= ['all', 'january', 'february', 'march','april','may','june']
@@ -35,8 +35,8 @@ def get_filters():
           break
       except:
           print('\n Please select from Janurary to June or type all.')
-                   
-           
+
+
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     day_list = ['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',                  'Sunday']
@@ -47,7 +47,7 @@ def get_filters():
           break
         except:
             print('\nPlease Select from monday, tuesday,...,sunday or Select all.')
-                  
+
 
     print('-'*40)
     return city, month, day
@@ -56,7 +56,7 @@ def get_filters():
 def load_data(city, month, day):
         """
         Loads data for the specified city and filters by month and day if applicable.
-        
+
         Args:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -68,7 +68,7 @@ def load_data(city, month, day):
         df['Start Time']=pd.to_datetime(df['Start Time'])
         df['month']=df['Start Time'].dt.month
         df['day_of_week']=df['Start Time'].dt.weekday_name
-        
+
         # filter by month if applicable
         if month != "all":
             # use tge indexx of month list ro get the corresponding int
@@ -84,7 +84,7 @@ def load_data(city, month, day):
 
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
-    
+
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
@@ -100,7 +100,7 @@ def time_stats(df):
     df ['hour'] = df ['Start Time'].dt.hour
     most_common_start_hour= df['hour'].mode()[0]
     print('Most Common Start Hour is', most_common_start_hour)
-          
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -151,7 +151,7 @@ def user_stats(df,city):
 
     # TO DO: Display counts of user types
     user_types = df['User Type'].value_counts()
-    print('Counts of User Types is ', user_types)         
+    print('Counts of User Types is ', user_types)
 
     # TO DO: Display counts of gender
     if city !='washington':
@@ -159,16 +159,16 @@ def user_stats(df,city):
         gender_counts = df['Gender'].value_counts()
         print('Counts of Gender is ', gender_counts)
     else:
-        print('Washington has No Gender Info')  
+        print('Washington has No Gender Info')
 
     # TO DO: Display earliest, most recent, and most common year of birth
     if city != 'washington':
         df.dropna(axis = 0)
         gender_counts = df['Gender'].value_counts()
-        print('\ncounts of gender: \n', gender_counts)  
+        print('\ncounts of gender: \n', gender_counts)
     else:
         print('\nNo gender information for Washington')
-                
+
     # TO DO: Display earliest, most recent, and most common year of birth
     if city != 'washington':
         df.dropna(axis = 0)
@@ -179,8 +179,8 @@ def user_stats(df,city):
         most_common = int(df['Birth Year'].mode()[0])
         print('Most Common Year of Birth is ', most_common)
     else:
-        print('Washington has No Birth Year Information')    
-    
+        print('Washington has No Birth Year Information')
+
     answer_list = ['yes','no']
     i = 0
     j = 5
@@ -205,7 +205,7 @@ def user_stats(df,city):
 def main():
 
     while True:
-                  
+
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
