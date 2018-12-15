@@ -94,7 +94,7 @@ def time_stats(df):
 
     # TO DO: display the most common day of week
     most_common_day_of_week = df['day_of_week'].mode()[0]
-    print('Most Commom Month is', most_common_day_of_week)
+    print('Most Common Month is', most_common_day_of_week)
 
     # TO DO: display the most common start hour
     df ['hour'] = df ['Start Time'].dt.hour
@@ -161,13 +161,6 @@ def user_stats(df,city):
     else:
         print('Washington has No Gender Info')
 
-    # TO DO: Display earliest, most recent, and most common year of birth
-    if city != 'washington':
-        df.dropna(axis = 0)
-        gender_counts = df['Gender'].value_counts()
-        print('\ncounts of gender: \n', gender_counts)
-    else:
-        print('\nNo gender information for Washington')
 
     # TO DO: Display earliest, most recent, and most common year of birth
     if city != 'washington':
